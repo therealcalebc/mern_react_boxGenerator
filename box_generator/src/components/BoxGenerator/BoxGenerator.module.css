@@ -1,0 +1,33 @@
+.BoxGenerator {
+	width: 90%;
+}
+.BoxGenForm form {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.BoxGenForm label {
+	margin: 2%;
+}
+.BoxGenForm input {
+	font-size: 1em;
+}
+.BoxGenForm button {
+	padding: 0.2% 1.1%;
+	font-size: 0.9em;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	flex: none;
+	align-items: center;
+}
+
+.container div {
+	margin: 2%;
+}
