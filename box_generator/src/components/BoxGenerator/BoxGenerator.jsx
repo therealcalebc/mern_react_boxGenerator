@@ -6,17 +6,26 @@ const BoxGenerator = (props) => {
 	const [size, setSize] = useState("");
 	const [boxes, setBoxes] = useState([]);
 	const addBox = (c = "white", s = "100") => {
-		const divStyle = {
-			backgroundColor: c,
-			width: s + "px",
-			height: s + "px",
-		};
-		setBoxes([...boxes, divStyle]);
+		let err = "";
+		if (c.length < 3) err = "Please enter a valid color\n";
+		if (s === "") s = "100";
+		else if (s < 11) err += "Size should be bigger than 10";
+		if (err !== "") {
+			alert(err);
+			return c;
+		} else {
+			const style = {
+				backgroundColor: c,
+				width: s + "px",
+				height: s + "px",
+			};
+			setBoxes([...boxes, style]);
+			return "";
+		}
 	};
 	const handleAdd = (e) => {
 		e.preventDefault();
-		addBox(color, size);
-		setColor("");
+		setColor(addBox(color, size));
 	};
 	return (
 		<main className={styles.BoxGenerator}>
@@ -28,6 +37,11 @@ const BoxGenerator = (props) => {
 							type='text'
 							name='color'
 							value={color}
+							onChange={(e) => setColor(e.target.value)}
+						/>
+						<input
+							type='color'
+							name='colorPicker'
 							onChange={(e) => setColor(e.target.value)}
 						/>
 					</label>
@@ -44,8 +58,8 @@ const BoxGenerator = (props) => {
 				</form>
 			</div>
 			<div className={styles.container}>
-				{boxes.map((divStyle, index) => (
-					<div key={index} style={divStyle} />
+				{boxes.map((boxStyle, index) => (
+					<div key={index} style={boxStyle} />
 				))}
 			</div>
 		</main>
